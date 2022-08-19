@@ -1,13 +1,114 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+
+.triangle-left-top-big {
+  clip-path: polygon(
+    6rem 0,
+    6rem 5rem,
+    8rem 5rem,
+    8rem 6rem,
+    6rem 6rem,
+    6rem 8rem,
+    5rem 8rem,
+    5rem 6em,
+    0 6rem,
+    6rem 0
+  );
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.triangle-left-top-small {
+  clip-path: polygon(3rem 0, 3rem 3rem, 0 3rem, 3rem 0);
 }
+
+.triangle-right-top-big {
+  clip-path: polygon(
+    2rem 0,
+    8rem 6rem,
+    3rem 6rem,
+    3rem 8rem,
+    2rem 8rem,
+    2rem 6rem,
+    0 6rem,
+    0 5rem,
+    2rem 5rem,
+    2rem 0
+  );
+}
+
+.triangle-right-top-small {
+  clip-path: polygon(0 0, 3rem 3rem, 0 3rem, 0 0);
+}
+
+.triangle-left-bottom-big {
+  clip-path: polygon(
+    0 2rem,
+    5rem 2rem,
+    5rem 0,
+    6rem 0,
+    6rem 2rem,
+    8rem 2rem,
+    8rem 3rem,
+    6rem 3rem,
+    6rem 8rem,
+    0 2rem
+  );
+}
+
+.triangle-left-bottom-small {
+  clip-path: polygon(0 0, 3rem 0, 3rem 3rem, 0 0);
+}
+
+.triangle-right-bottom-big {
+  clip-path: polygon(
+    2rem 0,
+    3rem 0,
+    3rem 2rem,
+    8rem 2rem,
+    2rem 8rem,
+    2rem 3rem,
+    0 3rem,
+    0 2rem,
+    2rem 2rem,
+    2rem 0
+  );
+}
+
+.triangle-right-bottom-small {
+  clip-path: polygon(0 0, 3rem 0, 0 3rem, 0 0);
+}
+
+.circle {
+  animation: spinSlowPause 2s infinite ease-out;
+  box-shadow: 0.2rem 0.4rem 2.4rem rgba(0, 0, 0, 0.4);
+  /* border: 0.5rem solid transparent;
+  border-image: linear-gradient(red, yellow);
+  border-image-slice: 1; */
+}
+
+@keyframes spinSlowPause {
+  /* 0% {
+    transform: rotate(0);
+  } */
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.loader {
+  animation: spinSlowDelay 2s infinite ease-out;
+  overflow: hidden;
+}
+
+@keyframes spinSlowDelay {
+  50% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@tailwind utilities;
