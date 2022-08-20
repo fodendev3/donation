@@ -1,18 +1,29 @@
-// import Loader from "./components/Loader";
-// import Logo from "./components/Logo";
-
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import ContextProvider from "./context/ContextProvider";
-// import Navbar from "./components/User/Navbar";
-// import Landing from "./components/Landing";
+import Loader from "./components/Loader";
+
+const Landing = lazy(() => import('./components/Landing'));
+const Navbar = lazy(() => import('./components/User/Navbar'));
+const NavBar = lazy(() => import('./components/Ngo/NavBar'));
 
 function App() {
+  const location = useLocation()
+
   return (
-    <ContextProvider>
-      {/* <Loader dimension={10} /> */}
-      {/* <Logo dimension={10} /> */}
-      {/* <Navbar /> */}
-      {/* <Landing /> */}
-    </ContextProvider>
+    <Router>
+      <Suspense fallback={<Loader dimension={10} />}>
+        <ContextProvider>
+          {location.pathname.startsWith('/user') && <Navbar />}
+          {location.pathname.startsWith('/ngo') && <NavBar />}
+          <Routes>
+            <Route path='/' element={<Landing />} />
+            {/* <Route path="/user" element={<Comp />} />
+            <Route path="/ngo" element={<Comp />} /> */}
+          </Routes>
+        </ContextProvider>
+      </Suspense>
+    </Router>
   );
 }
 

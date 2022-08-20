@@ -1,5 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import React, { useContext, createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ngoAuth, userAuth } from "../firebase";
 // import { useStorage } from "../hooks";
 
@@ -7,8 +8,11 @@ const Context = createContext()
 export const useDataContext = () => useContext(Context);
 
 const ContextProvider = props => {
+    const navigate = useNavigate()
     const [user, setUser] = useState()
     const [ngo, setNgo] = useState()
+    const userPages = ['/user']
+    const ngoPages = ['/ngo']
 
     onAuthStateChanged(userAuth, user => {
         console.log(user)
