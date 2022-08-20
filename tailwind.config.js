@@ -11,6 +11,10 @@ module.exports = {
         xl: "1280px",
         "2xl": "1536px",
       },
+      colors: {
+        'gradient1a': '#E0C4FD',
+        'gradient1b': '#8FC6FD',
+      },
     },
   },
   plugins: [],
