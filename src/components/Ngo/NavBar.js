@@ -41,7 +41,7 @@ const NavBar = () => {
             </svg>
           </a>
           <a href="/">
-            <img src={profileImage} className="w-14 h-14 rounded-full" alt={}></img>
+            <img src={profileImage} className="w-14 h-14 rounded-full" alt=''></img>
           </a>
         </div>
       </div>

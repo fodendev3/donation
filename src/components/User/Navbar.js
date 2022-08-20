@@ -1,12 +1,12 @@
 import React from 'react'
-import logo from '..'
+import Logo from '../Logo'
 
 const Navbar = () => {
   return (
     <div>
-        <div className="div border-b-2">
-            <img src={logo} alt="" />
-        </div>
+      <div className="div border-b-2">
+        <Logo dimension={5} />
+      </div>
     </div>
   )
 }
