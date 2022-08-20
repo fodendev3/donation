@@ -2,10 +2,7 @@ import React from 'react'
 import Logo from "../Logo";
 import User from "../../images/user-interface.png";
 import { Link } from 'react-router-dom';
-// import Login from './Login';
-// import Register from './Register';
-// import About from './About';
-import Footer from './Footer';
+
 
 const Navbar = () => {
   return (
@@ -24,10 +21,6 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        {/* <Login></Login> */}
-        {/* <Register></Register> */}
-        {/* <About></About> */}
-        <Footer></Footer>
     </div>
   )
 }

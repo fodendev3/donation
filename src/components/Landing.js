@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import poster from "../images/landing.webp";
 import Logo from "./Logo";
 import User from "../images/user-interface.png";
+import Login from '../components/User/Login';
+import Register from '../components/User/Register';
+import About from '../components/User/About';
+import Footer from '../components/User/Footer';
 
 const Landing = () => {
     return (
@@ -27,7 +31,7 @@ const Landing = () => {
 
 
 
-            <div className='bg-[url("images/background.webp")] bg-no-repeat bg-center bg-cover fixed -z-10 w-full h-screen' >
+            <div className='bg-[url("images/background.webp")] bg-no-repeat bg-center bg-cover -z-10 w-full h-screen' >
                 <div className='flex my-32 mx-44'>
                     <div className='m-10'>
                         <h1 className='text-4xl font-bold'>Donate!</h1>
@@ -41,6 +45,10 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
+            <Login></Login>
+            <Register></Register>
+            <About></About>
+            <Footer></Footer>
         </>
     )
 }
