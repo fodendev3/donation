@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import ContextProvider from "./context/ContextProvider";
 import Loader from "./components/Loader";
 
+
 const Landing = lazy(() => import('./components/Landing'));
 const Navbar = lazy(() => import('./components/User/Navbar'));
 const NavBar = lazy(() => import('./components/Ngo/NavBar'));
