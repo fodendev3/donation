@@ -5,11 +5,12 @@ import Logo from "../../components/Logo";
 import profileImage from "./images.jpg";
 const NavBar = () => {
   return (
-    <div class="relative">
-      <div className="sticky flex top-0 left-0 lex justify-between items-center w-screen py-8 px-8  sm:py-2 shadow-md">
+    <>
+    <div className="relative">
+      <div className="sticky flex top-0 left-0 lex justify-between items-center w-screen py-6 px-8  sm:py-2 shadow-md">
         <div>
           <a href="/" className="flex items-center gap-4">
-            <Logo dimension={2.5} />
+            <Logo dimension={2} loader="false" />
             <h1
               className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-[#2dc1e4] to-[#e8ecc7] hidden lg:block"
               style={{
@@ -21,31 +22,106 @@ const NavBar = () => {
             </h1>
           </a>
         </div>
-        <div className="flex justify-center items-center gap-4">
-          <a href="/">Home</a>
-          <a href="/">Dashboard</a>
-          <a href="/">
+        <div className="flex justify-center items-center gap-8  ">
+          <a
+            href="/"
+            className="hidden sm:block text-xl tracking-widest font-semibold uppercase relative  after:absolute after:content-[''] after:w-full  after:-bottom-[.2rem]  after:-left-full after:h-[.2rem] after:hidden  after:bg-gradient-to-r after:from-[#2dc1e4] after:to-[#e8ecc7] hover:after:left-0 after:transition-all after:ease-in-out after:duration-500 hover:after:block hover:translate-x-1 hover:ease-in-out hover:duration-200"
+          >
+            Home
+          </a>
+          <a
+            href="/"
+            className=" hidden sm:block text-xl tracking-widest font-semibold uppercase relative  after:absolute after:content-[''] after:w-full  after:-bottom-[.2rem]  after:-left-full after:h-[.2rem] after:hidden  after:bg-gradient-to-r after:from-[#2dc1e4] after:to-[#e8ecc7] hover:after:left-0 after:transition-all after:ease-in-out after:duration-500 hover:after:block hover:translate-x-1 hover:ease-in-out hover:duration-200 "
+          >
+            Dashboard
+          </a>
+          <a href="/" className=" relative ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              className="w-8 h-8 animate-[ring_1s_ease-out_infinite] "
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              strokeWidth="2"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
               />
             </svg>
+            <span
+              className="absolute -top-2 right-0 bg-red-700 text-white px-[.35rem] py-[.1rem] rounded-full text-[.7rem] animate-pulse
+            "
+            >
+              5
+            </span>
           </a>
           <a href="/">
-            <img src={profileImage} className="w-14 h-14 rounded-full" alt=''></img>
+            <img
+              src={profileImage}
+              className="w-14 h-14 rounded-full "
+              alt="Ngo logo"
+            ></img>
           </a>
         </div>
       </div>
+
     </div>
+      <div className="absolute z-10 top-32 right-6 sm:hidden shadow-2xl p-4 bg-stone-100 rounded-full " onClick={() => {
+        document.querySelector(".ngo-menu-back").classList.add('w-screen','h-screen');
+      }}>
+        <div className="ngo-hamburger" onClick={() => {
+          document.querySelector(".ngo-hamburger").classList.add('hidden');
+          document.querySelector(".ngo-cross").classList.remove('hidden');
+          document.querySelector(".ngo-menu").classList.remove('hidden');
+          document.querySelector(".ngo-menu-back").classList.remove('hidden');
+        }}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </div>
+        <div className="ngo-cross hidden" onClick={() => {
+          document.querySelector(".ngo-hamburger").classList.remove('hidden');
+          document.querySelector(".ngo-cross").classList.add('hidden');
+          document.querySelector(".ngo-menu").classList.add('hidden');
+          document.querySelector(".ngo-menu-back").classList.add('hidden');
+        }}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+             strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+      </div>
+      <div className="ngo-menu absolute top-24 left-0 w-screen h-screen  z-5 sm:hidden px-14 py-20 hidden" >
+        <div className="flex flex-col gap-8">
+          <a href="/" className="text-3xl border-b-2 py-4 ">Home</a>
+          <a href="/" className="text-3xl border-b-2 py-4 ">Dashboard</a>
+        </div>
+      </div>
+      <div className="ngo-menu-back hidden absolute top-26 right-0 bg-stone-500/25 -z-1  transition-all duration-700 ease-out sm:hidden"></div>
+    </>
   );
 };
 
