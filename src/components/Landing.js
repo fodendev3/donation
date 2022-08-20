@@ -18,6 +18,7 @@ const Landing = () => {
                         <ul className='flex'>
                             <li className='mx-4 -my-2 font-semibold hover:underline cursor-pointer'>Home</li>
                             <li className='mx-4 -my-2 font-semibold hover:underline cursor-pointer'>About</li>
+                            <li className='mx-4 -my-2 font-semibold hover:underline cursor-pointer'>Donate</li>
                             <li className='mx-4 -my-2 font-semibold hover:underline cursor-pointer'><img src={User} className="w-6" alt="" /></li>
                         </ul>
                     </div>
