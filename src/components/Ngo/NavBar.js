@@ -116,11 +116,16 @@ const NavBar = () => {
       </div>
       <div className="ngo-menu absolute top-24 left-0 w-screen h-screen  z-5 sm:hidden px-14 py-20 hidden" >
         <div className="flex flex-col gap-8">
-          <a href="/" className="text-3xl border-b-2 py-4 ">Home</a>
-          <a href="/" className="text-3xl border-b-2 py-4 ">Dashboard</a>
+          <a href="/" className="text-xl border-b-2 py-4 ">Home</a>
+          <a href="/" className="text-xl border-b-2 py-4 ">Dashboard</a>
         </div>
       </div>
-      <div className="ngo-menu-back hidden absolute top-26 right-0 bg-stone-500/25 -z-1  transition-all duration-700 ease-out sm:hidden"></div>
+      <div className="ngo-menu-back hidden absolute top-26 right-0 bg-stone-500/25 -z-1   sm:hidden" style={
+        {
+          transition: 'all 2s',
+
+        }
+      }></div>
     </>
   );
 };
