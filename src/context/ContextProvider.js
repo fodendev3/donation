@@ -10,16 +10,18 @@ const ContextProvider = props => {
     const [user, setUser] = useState()
     const [ngo, setNgo] = useState()
 
-    onAuthStateChanged(userAuth, ({ uid }) => {
-        if (uid) return console.log('User not authenticated')
-        setUser(uid)
-        console.log('User authenticated')
+    onAuthStateChanged(userAuth, user => {
+        console.log(user)
+        // if (uid) return console.log('User not authenticated')
+        // setUser(uid)
+        // console.log('User authenticated')
     })
 
-    onAuthStateChanged(ngoAuth, ({ uid }) => {
-        if (uid) return console.log('Ngo not authenticated')
-        setNgo(uid)
-        console.log('Ngo authenticated')
+    onAuthStateChanged(ngoAuth, user => {
+        console.log(user)
+        // if (uid) return console.log('Ngo not authenticated')
+        // setNgo(uid)
+        // console.log('Ngo authenticated')
     })
 
     return <Context.Provider value={{ user, ngo }}>
