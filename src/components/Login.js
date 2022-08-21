@@ -12,12 +12,12 @@ const Login = ({ type }) => {
 
   async function submit(event) {
     event.preventDefault()
-    if (type === 'user') {
+    if (type === 'User') {
       const { success, error } = await loginUser(email.current.value, password.current.value)
       if (!success) return toast.error(error)
       toast.success('Logged in successfully!')
       navigate('/user')
-    } else if (type === 'ngo') {
+    } else if (type === 'Ngo') {
       const { success, error } = await loginNgo(email.current.value, password.current.value)
       if (!success) return toast.error(error)
       toast.success('Logged in successfully!')
