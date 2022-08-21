@@ -6,7 +6,7 @@ import about3 from '../images/about3.png'
 const About = () => {
     return (
         <>
-            <h1 className='text-4xl font-bold m-4 flex justify-center'>About Us</h1>
+            <h1 className='text-4xl font-bold m-4 my-10 flex justify-center'>About Us</h1>
             <div className='flex w-11/12 justify-center m-10'>
                 <img className='w-1/3' src={about1} alt="" />
                 <div className='w-1/2 flex flex-col justify-center items-center'>
@@ -25,7 +25,7 @@ const About = () => {
                 </div>
                 <img className='w-1/3' src={about2} alt="" />
             </div>
-            <div className='flex w-11/12 justify-center m-10'>
+            <div className='flex w-11/12 justify-center m-10 border-b-2'>
                 <img className='w-1/3' src={about3} alt="" />
                 <div className='w-1/2 flex flex-col justify-center items-center'>
                     <div>
@@ -34,6 +34,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
+
         </>
     )
 }

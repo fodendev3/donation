@@ -1,5 +1,6 @@
 import React from 'react'
 import login from '../../images/Register.webp'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
@@ -12,7 +13,7 @@ const Login = () => {
         <input className='px-4 py-3 border rounded-lg my-2 bg-gray-100 hover:bg-white' type="email" placeholder='Email' />
         <input className='px-4 py-3 border rounded-lg my-2 bg-gray-100 hover:bg-white' type="password" placeholder='Password' />
         <button className="font-semibold w-1/3 my-2 mx-auto btn bg-gradient-to-r from-gradient1a to-gradient1b border rounded-lg px-4 py-2 m-2">Register</button>
-        <p className=' flex my-2 justify-center text-sm'>Already have an account? &nbsp;<span className='text-blue-600 cursor-pointer underline'> Login here</span></p>
+        <p className=' flex my-2 justify-center text-sm'>Already have an account? &nbsp;<Link to="/user/login"><span className='text-blue-600 cursor-pointer underline'> Login here</span></Link></p>
     </div>
     </div>
     </>

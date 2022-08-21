@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/user/signup" element={<Register />} />
-          <Route path="/user/signup" element={<Login />} />
+          <Route path="/user/login" element={<Login />} />
           <Route path="/ngo/dashboard" element={<Dashboard />} />
           <Route path="/ngo/profile" element={<Profile />} />
 
