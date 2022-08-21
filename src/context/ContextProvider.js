@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ngoAuth, userAuth } from "../firebase";
+import { getNgoData, ngoAuth, userAuth } from "../firebase";
 // import { useStorage } from "../hooks";
 
 const Context = createContext()
@@ -14,19 +14,22 @@ const ContextProvider = props => {
     const userPages = ['/user']
     const ngoPages = ['/ngo']
 
-    onAuthStateChanged(userAuth, user => {
-        console.log(user)
-        // if (uid) return console.log('User not authenticated')
-        // setUser(uid)
-        // console.log('User authenticated')
-    })
+    useEffect(() => {
+        onAuthStateChanged(userAuth, user => {
+            if (!user) return console.log('User not authenticated')
+            const { uid } = user
+            setUser(uid)
+            console.log('User authenticated')
+        })
 
-    onAuthStateChanged(ngoAuth, user => {
-        console.log(user)
-        // if (uid) return console.log('Ngo not authenticated')
-        // setNgo(uid)
-        // console.log('Ngo authenticated')
-    })
+        onAuthStateChanged(ngoAuth, ngo => {
+            if (!ngo) return console.log('Ngo not authenticated')
+            const { uid } = ngo
+            setNgo(uid)
+            console.log('Ngo authenticated')
+        })
+        getNgoData('Vl8tBuZ9EgEux13A3PFa')
+    }, [])
 
     return <Context.Provider value={{ user, ngo }}>
         {props.children}

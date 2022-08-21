@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, getDoc, doc, updateDoc, getDocs, collection } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const apiKey = process.env.REACT_APP_FIREBASE_API_KEY
@@ -32,6 +32,10 @@ export async function loginUser(email, password) {
     } catch (error) { return { success: false, error: error.message || 'Some error occured...' } }
 }
 
+export async function initiateDonation(uid, items) {
+
+}
+
 export async function signupNgo(email, password) {
     try {
         await createUserWithEmailAndPassword(ngoAuth, email, password)
@@ -46,6 +50,32 @@ export async function loginNgo(email, password) {
     } catch (error) { return { success: false, error: error.message || 'Some error occured...' } }
 }
 
-export async function getNgoData() {
+export async function getNgos() {
+    try {
+        const ngos = await getDocs(collection(db, '/ngos'))
+        console.log(ngos)
+        return { success: true }
+    } catch { return { success: false } }
+}
 
+export async function getNgoData(uid) {
+    try {
+        const info = await getDoc(doc(db, `/ngos/${uid}`))
+        return { success: info.exists(), data: info.data() }
+    } catch { return { success: false } }
+}
+
+export async function setEvent(uid, title, description, image, url) {
+    try {
+        const ref = doc(db, `/ngos/${uid}`)
+        const info = await getDoc(ref)
+        const event = { title, description, image, url }
+        let events;
+        if (info.exists()) {
+            events = info.data().events || []
+            events.push(event)
+            await updateDoc(ref, { events })
+        }
+        return { success: true, events }
+    } catch { return { success: false } }
 }

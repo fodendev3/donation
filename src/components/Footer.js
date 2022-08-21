@@ -1,9 +1,9 @@
 import React from 'react'
-import Logo from '../Logo'
-import instagram from '../../images/instagram.png'
-import twitter from '../../images/twitter.png'
-import linkedin from '../../images/linkedin.png'
-import youtube from '../../images/youtube.png'
+import Logo from './Logo'
+import instagram from '../images/instagram.png'
+import twitter from '../images/twitter.png'
+import linkedin from '../images/linkedin.png'
+import youtube from '../images/youtube.png'
 
 const Footer = () => {
     return (
@@ -27,11 +27,6 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div className='flex flex-col w-1/3 m-4'>
-                    <h1 className='font-bold text-xl m-4'>UPDATES</h1>
-                    <div className='flex flex-col'>
-                        <input className='w-3/4 border text-sm m-2 py-3 px-7 bg-gray-200 rounded-lg hover:bg-white' type="text" name="" id="" placeholder='Email Address' />
-                        <button className="font-semibold w-3/4 btn bg-gradient-to-r from-gradient1a to-gradient1b border rounded-lg px-4 py-2 m-2">Subscribe</button>
-                    </div>
                     <h1 className='font-bold text-xl m-4'>CONNECT</h1>
                     <div className='flex justify-between w-3/4 my-2 cursor-pointer'>
 

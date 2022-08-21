@@ -57,14 +57,9 @@ const Dashboard = () => {
       {/* for the showcase of exact data */}
       <div className="ngo-dashboard hidden mt-32">
         <div className="  px-12 grid xlg:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-8 ">
-          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-8 xsm:px-4 py-6 flex  flex-col gap-6 bg-slate-50 bg-slate-50  hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
+          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-8 xsm:px-4 py-6 flex  flex-col gap-6 bg-slate-50 hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
             <div className="flex gap-10">
-              <img
-                src={userImage}
-                alt="User Image"
-                srcset=""
-                className="w-24 h-24  rounded-full shadow-2xl"
-              />
+              <img src={userImage} alt="User Image" className="w-24 h-24  rounded-full shadow-2xl" />
               <div className="flex flex-col gap-1">
                 <div className="text-2xl tracking-widest text-neutral-500 font-light">
                   Shivansh Arora
