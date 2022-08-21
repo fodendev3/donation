@@ -3,13 +3,14 @@ import React from "react";
 // import PropTypes from "prop-types";
 import Logo from "../../components/Logo";
 import profileImage from "./images.jpg";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
     <div className="relative">
       <div className="sticky flex top-0 left-0 lex justify-between items-center w-screen py-6 px-8  sm:py-2 shadow-md">
         <div>
-          <a href="/" className="flex items-center gap-4">
+          <Link to="/ngo" className="flex items-center gap-4">
             <Logo dimension={2} loader="false" />
             <h1
               className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-[#2dc1e4] to-[#e8ecc7] hidden lg:block"
@@ -20,21 +21,21 @@ const NavBar = () => {
             >
               DoNation
             </h1>
-          </a>
+          </Link>
         </div>
         <div className="flex justify-center items-center gap-8  ">
-          <a
-            href="/"
+          <Link
+            to="/ngo"
             className="hidden sm:block text-xl tracking-widest font-semibold uppercase relative  after:absolute after:content-[''] after:w-full  after:-bottom-[.2rem]  after:-left-full after:h-[.2rem] after:hidden  after:bg-gradient-to-r after:from-[#2dc1e4] after:to-[#e8ecc7] hover:after:left-0 after:transition-all after:ease-in-out after:duration-500 hover:after:block hover:translate-x-1 hover:ease-in-out hover:duration-200"
           >
             Home
-          </a>
-          <a
-            href="/"
+          </Link>
+          <Link
+            to="/ngo"
             className=" hidden sm:block text-xl tracking-widest font-semibold uppercase relative  after:absolute after:content-[''] after:w-full  after:-bottom-[.2rem]  after:-left-full after:h-[.2rem] after:hidden  after:bg-gradient-to-r after:from-[#2dc1e4] after:to-[#e8ecc7] hover:after:left-0 after:transition-all after:ease-in-out after:duration-500 hover:after:block hover:translate-x-1 hover:ease-in-out hover:duration-200 "
           >
             Dashboard
-          </a>
+          </Link>
           <a href="/" className=" relative ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
