@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MakeDonations from "./components/User/MakeDonations";
 import UserProfile from "./components/User/UserProfile";
+import UserHome from "./components/User/UserHome";
 
 const Landing = lazy(() => import("./components/Landing"));
 const Navbar = lazy(() => import("./components/User/Navbar"));
@@ -40,6 +41,7 @@ function App() {
           <Route path="/ngo" element={<Posts />} />
           <Route path="/ngo/dashmore" element={<DashBoardMoreDetails />} />
           <Route path="/user/profile" element={<UserProfile />} />
+          <Route path="/user" element={<UserHome />} />
 
           {/* <Route path="/user" element={<Comp />} />
             <Route path="/ngo" element={<Comp />} /> */}

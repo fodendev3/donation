@@ -13,7 +13,7 @@ const NavBar = () => {
             <Link to="/ngo" className="flex items-center gap-4">
               <Logo dimension={2} loader={false} />
               <h1
-                className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-[#2dc1e4] to-[#e8ecc7] hidden lg:block"
+                className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-gradient1a to-gradient1b hidden lg:block"
                 style={{
                   wordSpacing: ".1rem",
                   letterSpacing: ".1rem",
