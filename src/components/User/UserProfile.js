@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ngoImage from "./images.jpg";
-import LogOut from "./LogOut";
+import ngoImage from "../Ngo/images.jpg";
+import LogOut from "../Ngo/LogOut";
 
-export default function Profile() {
+export default function UserProfile() {
   document.querySelector("body").style.overflowX = "hidden";
 
   const [edit, setEdit] = useState(true);
@@ -77,7 +77,7 @@ export default function Profile() {
                     Donate India
                   </h1>
                   <h1 className="sm:hidden  font-light tracking-widest text-xs">
-                    Update is not possible in mobile browser
+                    Update is not possible in mobile
                   </h1>
                   <h1 className="hidden md:block font-light tracking-widest text-xs">
                     Update you profile and personnel details
@@ -95,7 +95,9 @@ export default function Profile() {
                     Cancel
                   </button>
                   <button
-                    className="bg-black text-white px-4 py-2 rounded-xl"
+                    className={`bg-black text-white px-4 py-2 rounded-xl ${
+                      page === "profile" ? "" : "hidden"
+                    }`}
                     onClick={() => {
                       edit ? setEdit(false) : setEdit(true);
                     }}
@@ -111,7 +113,7 @@ export default function Profile() {
               >
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
                   <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
-                    Organisation Name
+                    Name
                   </div>
                   <div className="w-full">
                     <input
@@ -120,30 +122,16 @@ export default function Profile() {
                         edit ? "text-gray-600" : ""
                       }  bg-gray-100 rounded-lg`}
                       type="text"
-                      value="Donate India"
+                      value="Shivansh Arora"
                     ></input>
                   </div>
                 </div>
+
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
                   <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
-                    Website
-                  </div>
-                  <div className="w-full">
-                    <input
-                      disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
-                      type="text"
-                      value="donationweb.vercel.app"
-                    ></input>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
-                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
-                    <div>Logo Url</div>
+                    <div>Profile Image Url</div>
                     <div className="font-light tracking-widest text-base mt-1">
-                      This will be displayed on your profile{" "}
+                      This will be displayed on your profile
                     </div>
                   </div>
                   <div className="w-full">
@@ -153,27 +141,8 @@ export default function Profile() {
                         edit ? "text-gray-600" : ""
                       }  bg-gray-100 rounded-lg`}
                       type="url"
-                      value="webpages.webp"
+                      value="profile.webp"
                     ></input>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
-                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
-                    <div>Description</div>
-                    <div className="font-light tracking-widest text-base mt-1">
-                      About 100 words
-                    </div>
-                  </div>
-                  <div className="w-full">
-                    <textarea
-                      rows={3}
-                      disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
-                      type="text"
-                      value="We are contributing towards the welfare of the women and child by providing them proper knowledge and skills"
-                    ></textarea>
                   </div>
                 </div>
 
@@ -192,6 +161,7 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
+
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
                   <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Contact No</div>
