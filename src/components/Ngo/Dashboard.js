@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
 // import styled from 'styled-components';
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import userImage from "./images.jpg";
 // #region constants
 
@@ -15,29 +15,17 @@ import userImage from "./images.jpg";
 
 // #endregion
 
-// #region component
-const propTypes = {};
-
-const defaultProps = {};
-
-/**
- *
- */
 const Dashboard = () => {
-  {
-    document.querySelector("body").style.overflowX = "hidden";
-  }
+  document.querySelector("body").style.overflowX = "hidden";
+
+  const [dashboardAnimation, setDashboardAnimation] = useState("");
   return (
     <>
       {setTimeout(() => {
-        document
-          .querySelector(".ngo-dashboard-animation")
-          .classList.add("hidden");
-
-        document.querySelector(".ngo-dashboard").classList.remove("hidden");
+        setDashboardAnimation("hidden");
       }, 1000)}
       {/* Animation of dahboard for showing palete */}
-      <div className="my-44 px-16 ngo-dashboard-animation">
+      <div className={`my-24 sm:mt-8 px-16 ${dashboardAnimation}`}>
         <div class=" shadow-2xl rounded-md p-12 max-w-lg w-full ">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-300 h-10 w-10"></div>
@@ -56,11 +44,18 @@ const Dashboard = () => {
       </div>
 
       {/* for the showcase of exact data */}
-      <div className="ngo-dashboard hidden mt-32">
-        <div className="  px-12 grid xlg:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-8 ">
-          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-8 xsm:px-4 py-6 flex  flex-col gap-6 bg-slate-50 hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
+      <div
+        className={`${
+          dashboardAnimation === "" ? "hidden" : ""
+        }  mt-24 sm:mt-8`}
+      >
+        <div className=" px-2 xsm:px-12 grid xlg:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-12 ">
+          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-2 sm:px-8 py-6 flex  flex-col gap-6 bg-slate-50 hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
             <div className="flex gap-10">
-              <img src={userImage} className="w-24 h-24  rounded-full shadow-2xl" />
+              <img
+                src={userImage}
+                className="w-24 h-24  rounded-full shadow-2xl"
+              />
               <div className="flex flex-col gap-1">
                 <div className="text-2xl tracking-widest text-neutral-500 font-light">
                   Shivansh Arora
@@ -85,13 +80,13 @@ const Dashboard = () => {
                 Wants to donate some cloths
               </div>
             </div>
-            <div className="flex justify-between items-center ">
+            <div className="flex flex-col gap-2 sm:flex-row sm:gap-0  justify-between items-center ">
               <div>
                 <button className="bg-gradient-to-r from-[#2dc1e4] to-[#e8ecc7]  text-gray-100 rounded-2xl px-6 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
                   More info
                 </button>
               </div>
-              <div className="flex gap-4 items-center">
+              <div className="flex flex-col sm:flex-row  gap-4 items-center">
                 <button className="bg-green-400 text-white rounded-2xl px-6 py-2 text-xl font-medium  hover:bg-gray-100 hover:text-green-400 hover:border-green-400 hover:border-2 transition-all duration-200 ease-in-out ">
                   Accept
                 </button>
@@ -101,12 +96,11 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-8 xsm:px-4 py-6 flex  flex-col gap-6 bg-slate-50 bg-slate-50  hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
+
+          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-2 sm:px-8 py-6 flex  flex-col gap-6 bg-slate-50 hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
             <div className="flex gap-10">
               <img
                 src={userImage}
-                alt="User Image"
-                srcset=""
                 className="w-24 h-24  rounded-full shadow-2xl"
               />
               <div className="flex flex-col gap-1">
@@ -133,13 +127,13 @@ const Dashboard = () => {
                 Wants to donate some cloths
               </div>
             </div>
-            <div className="flex justify-between items-center ">
+            <div className="flex flex-col gap-2 sm:flex-row sm:gap-0  justify-between items-center ">
               <div>
-                <button className="bg-[#2dc1e4]  text-gray-100 rounded-2xl px-6 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
+                <button className="bg-gradient-to-r from-[#2dc1e4] to-[#e8ecc7]  text-gray-100 rounded-2xl px-6 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
                   More info
                 </button>
               </div>
-              <div className="flex gap-4 items-center">
+              <div className="flex flex-col sm:flex-row  gap-4 items-center">
                 <button className="bg-green-400 text-white rounded-2xl px-6 py-2 text-xl font-medium  hover:bg-gray-100 hover:text-green-400 hover:border-green-400 hover:border-2 transition-all duration-200 ease-in-out ">
                   Accept
                 </button>
@@ -149,12 +143,10 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-8 xsm:px-4 py-6 flex  flex-col gap-6 bg-slate-50 bg-slate-50  hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
+          <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-2 sm:px-8 py-6 flex  flex-col gap-6 bg-slate-50 hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
             <div className="flex gap-10">
               <img
                 src={userImage}
-                alt="User Image"
-                srcset=""
                 className="w-24 h-24  rounded-full shadow-2xl"
               />
               <div className="flex flex-col gap-1">
@@ -181,13 +173,13 @@ const Dashboard = () => {
                 Wants to donate some cloths
               </div>
             </div>
-            <div className="flex justify-between items-center ">
+            <div className="flex flex-col gap-2 sm:flex-row sm:gap-0  justify-between items-center ">
               <div>
-                <button className="bg-[#2dc1e4]  text-gray-100 rounded-2xl px-6 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
+                <button className="bg-gradient-to-r from-[#2dc1e4] to-[#e8ecc7]  text-gray-100 rounded-2xl px-6 py-2 text-xl font-medium hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">
                   More info
                 </button>
               </div>
-              <div className="flex gap-4 items-center">
+              <div className="flex flex-col sm:flex-row  gap-4 items-center">
                 <button className="bg-green-400 text-white rounded-2xl px-6 py-2 text-xl font-medium  hover:bg-gray-100 hover:text-green-400 hover:border-green-400 hover:border-2 transition-all duration-200 ease-in-out ">
                   Accept
                 </button>
@@ -202,9 +194,5 @@ const Dashboard = () => {
     </>
   );
 };
-
-Dashboard.propTypes = propTypes;
-Dashboard.defaultProps = defaultProps;
-// #endregion
 
 export default Dashboard;

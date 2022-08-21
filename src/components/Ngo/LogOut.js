@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import logOutIcon from "./confirmation.png";
 import { Link } from "react-router-dom";
-export default function LogOut() {
+export default function LogOut(props) {
+  const [showLogout, setLogOut] = useState("");
+
   function hiddenModal() {
-    document.querySelector(".logoutPanel").classList.add("hidden");
+    setLogOut("hidden");
   }
   return (
     <>
-      <div className="relative w-screen h-screen logoutPanel">
-        <div className="absolute top-1/2 left-1/2  modal z-10 -translate-x-1/2 -translate-y-1/2 ">
+      <div
+        className={`relative w-screen h-screen logoutPanel z-10  ${showLogout}`}
+      >
+        <div
+          className={`fixed top-1/2 left-1/2  z-10 -translate-x-1/2 -translate-y-1/2 `}
+        >
           <div className="bg-white flex flex-col gap-6  items-center px-16 py-8 rounded-3xl border-t-8 border-t-green-400 ">
             <img
               src={logOutIcon}
@@ -35,7 +41,7 @@ export default function LogOut() {
           </div>
         </div>
         <div
-          className="absolute top-0 left-0 w-screen h-screen bg-black/20 overlay -z-1 "
+          className="fixed top-0 left-0 w-screen h-screen bg-black/50 overlay z-5 "
           onClick={hiddenModal}
         ></div>
       </div>

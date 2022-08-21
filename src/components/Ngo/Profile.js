@@ -3,9 +3,8 @@ import ngoImage from "./images.jpg";
 import LogOut from "./LogOut";
 
 export default function Profile() {
-  {
-    document.querySelector("body").style.overflowX = "hidden";
-  }
+  document.querySelector("body").style.overflowX = "hidden";
+
   const [edit, setEdit] = useState(true);
   const [page, setpage] = useState("profile");
 
@@ -17,8 +16,8 @@ export default function Profile() {
       <div className="">
         <div className="max-w-7xl  2xl:mx-auto mx-12 mt-8 ">
           <h1 className="text-3xl font-mono">Settings</h1>
-          <div className="flex gap-28 mt-8">
-            <div className="flex flex-col  gap-5 tracking-wider">
+          <div className="flex flex-col sm:flex-row gap-12 sm:gap-28 mt-8">
+            <div className="flex flex-row sm:flex-col  gap-5 tracking-wider">
               <div
                 className={`text-xl cursor-pointer ${
                   page === "profile" ? "font-bold tracking-widest text-2xl" : ""
@@ -30,7 +29,7 @@ export default function Profile() {
                 Profile
               </div>
               <div
-                className={`text-xl cursor-pointer ${
+                className={`hidden sm:block text-xl cursor-pointer ${
                   page === "password"
                     ? "font-bold tracking-widest text-2xl"
                     : ""
@@ -52,22 +51,22 @@ export default function Profile() {
                 Logout
               </div>
             </div>
-            <div className="w-full">
-              <div className="h-36 rounded-tl-3xl w-full bg-gray-200 relative">
+            <div className="w-full ">
+              <div className="h-36 rounded-tl-3xl w-full bg-gray-200 relative ">
                 <img
                   src={ngoImage}
                   alt="Ngo Logo"
                   className="absolute rounded-full w-28 h-28 top-[85%] left-8"
                 ></img>
                 <div className="absolute top-full left-44 mt-4 flex flex-col gap-1">
-                  <h1 className="text-2xl font-bold tracking-wide">
+                  <h1 className="text-xl sm:text-2xl font-bold tracking-wide">
                     Donate India
                   </h1>
-                  <h1 className="font-light tracking-widest">
-                    Update your photos and personnal details
+                  <h1 className="font-light tracking-widest text-xs">
+                    Update is not possible in mobile browser
                   </h1>
                 </div>
-                <div className="absolute top-full right-0 mt-4 flex gap-4 items-center">
+                <div className="hidden sm:flex absolute top-full right-0 mt-4  gap-4 items-center">
                   <button
                     className={`bg-gray-200 text-black font-semibold px-4 py-2 rounded-xl ${
                       edit ? "hidden" : ""
@@ -93,8 +92,8 @@ export default function Profile() {
                   page === "profile" ? "flex" : "hidden"
                 }`}
               >
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     Organisation Name
                   </div>
                   <div className="w-full">
@@ -108,8 +107,8 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     Website
                   </div>
                   <div className="w-full">
@@ -123,8 +122,8 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Logo Url</div>
                     <div className="font-light tracking-widest text-base mt-1">
                       This will be displayed on your profile{" "}
@@ -141,8 +140,8 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Description</div>
                     <div className="font-light tracking-widest text-base mt-1">
                       About 100 words
@@ -161,8 +160,8 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Email</div>
                   </div>
                   <div className="w-full">
@@ -176,8 +175,8 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Contact No</div>
                   </div>
                   <div className="w-full">
@@ -191,8 +190,8 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Alternate Contact No</div>
                   </div>
                   <div className="w-full">
@@ -207,8 +206,8 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Locality</div>
                   </div>
                   <div className="w-full">
@@ -222,8 +221,8 @@ export default function Profile() {
                     ></input>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Address</div>
                   </div>
                   <div className="w-full">
@@ -238,8 +237,8 @@ export default function Profile() {
                     ></textarea>
                   </div>
                 </div>
-                <div className="flex gap-12 w-full items-center">
-                  <div className="text-xl tracking-wide font-medium w-1/2">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
+                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     <div>Pincode</div>
                   </div>
                   <div className="w-full">
