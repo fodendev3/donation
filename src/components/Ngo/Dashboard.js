@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getNgoData } from "../../firebase";
+import useAuth from "../../hooks/useAuth";
 // import styled from 'styled-components';
 // import PropTypes from "prop-types";
 import userImage from "./images.jpg";
@@ -17,8 +20,15 @@ import userImage from "./images.jpg";
 
 const Dashboard = () => {
   document.querySelector("body").style.overflowX = "hidden";
-
+  const { ngo } = useAuth()
   const [dashboardAnimation, setDashboardAnimation] = useState("");
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getNgoData(ngo).then(({ success, data }) => { if (success) setData(data) })
+  }, [])
+
+
   return (
     <>
       {setTimeout(() => {
@@ -45,9 +55,8 @@ const Dashboard = () => {
 
       {/* for the showcase of exact data */}
       <div
-        className={`${
-          dashboardAnimation === "" ? "hidden" : ""
-        }  mt-24 sm:mt-8`}
+        className={`${dashboardAnimation === "" ? "hidden" : ""
+          }  mt-24 sm:mt-8`}
       >
         <div className=" px-2 xsm:px-12 grid xlg:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-12 ">
           <div className="shadow-[0_1px_16px_2px_rgba(0,0,0,.2)] rounded-xl  px-2 sm:px-8 py-6 flex  flex-col gap-6 bg-slate-50 hover:bg-gray-100 hover:text-[#2dc1e4] hover:border-[#2dc1e4] hover:border-2 transition-all duration-200 ease-in-out ">

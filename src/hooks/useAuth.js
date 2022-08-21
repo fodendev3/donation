@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 const useAuth = () => {
     const [user, setUser] = useState()
     const [ngo, setNgo] = useState()
+    const [email, setEmail] = useState()
 
     useEffect(() => {
         const unlisten = auth.onAuthStateChanged(user => {
@@ -14,7 +15,8 @@ const useAuth = () => {
                 setNgo(null)
             }
             else {
-                const { uid } = user
+                const { uid, email } = user
+                setEmail(email)
                 const authType = localStorage.getItem('auth-type')
                 if (authType === 'user') {
                     setUser(uid)
@@ -30,7 +32,7 @@ const useAuth = () => {
         return () => { unlisten(); }
     }, []);
 
-    return { user, ngo }
+    return { user, ngo, email }
 }
 
 export default useAuth;
