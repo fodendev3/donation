@@ -4,6 +4,7 @@ import ContextProvider from "./context/ContextProvider";
 import Loader from "./components/Loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MakeDonations from "./components/User/MakeDonations";
 
 const Landing = lazy(() => import("./components/Landing"));
 const Navbar = lazy(() => import("./components/User/Navbar"));
@@ -30,6 +31,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/user/signup" element={<Register type="User" />} />
           <Route path="/user/login" element={<Login type="User" />} />
+          <Route path="/user/donations" element={<MakeDonations/>} />
           <Route path="/ngo/signup" element={<Register type="Ngo" />} />
           <Route path="/ngo/login" element={<Login type="Ngo" />} />
           <Route path="/ngo/dashboard" element={<Dashboard />} />

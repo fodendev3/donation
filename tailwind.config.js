@@ -15,6 +15,10 @@ module.exports = {
         'gradient1a': '#E0C4FD',
         'gradient1b': '#8FC6FD',
       },
+      width: {
+        '4.8': '48%',
+        '9.8': '98%',
+      },
     },
   },
   plugins: [],
