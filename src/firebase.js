@@ -20,18 +20,24 @@ export const auth = getAuth()
 
 export async function signupUser(email, password) {
     try {
-        await createUserWithEmailAndPassword(auth, email, password)
         localStorage.setItem('auth-type', 'user')
+        await createUserWithEmailAndPassword(auth, email, password)
         return { success: true }
-    } catch (error) { return { success: false, error: error.message || 'Some error occured...' } }
+    } catch (error) {
+        localStorage.removeItem('auth-type')
+        return { success: false, error: error.message || 'Some error occured...' }
+    }
 }
 
 export async function loginUser(email, password) {
     try {
-        await signInWithEmailAndPassword(auth, email, password)
         localStorage.setItem('auth-type', 'user')
+        await signInWithEmailAndPassword(auth, email, password)
         return { success: true }
-    } catch (error) { return { success: false, error: error.message || 'Some error occured...' } }
+    } catch (error) {
+        localStorage.removeItem('auth-type')
+        return { success: false, error: error.message || 'Some error occured...' }
+    }
 }
 
 export async function getUserData(uid) {
@@ -101,18 +107,24 @@ export async function completeDonation(uid, id, password) {
 
 export async function signupNgo(email, password) {
     try {
-        await createUserWithEmailAndPassword(auth, email, password)
         localStorage.setItem('auth-type', 'ngo')
+        await createUserWithEmailAndPassword(auth, email, password)
         return { success: true }
-    } catch (error) { return { success: false, error: error.message || 'Some error occured...' } }
+    } catch (error) {
+        localStorage.removeItem('auth-type')
+        return { success: false, error: error.message || 'Some error occured...' }
+    }
 }
 
 export async function loginNgo(email, password) {
     try {
-        await signInWithEmailAndPassword(auth, email, password)
         localStorage.setItem('auth-type', 'ngo')
+        await signInWithEmailAndPassword(auth, email, password)
         return { success: true }
-    } catch (error) { return { success: false, error: error.message || 'Some error occured...' } }
+    } catch (error) {
+        localStorage.removeItem('auth-type')
+        return { success: false, error: error.message || 'Some error occured...' }
+    }
 }
 
 export async function getNgos(pincode = 'all') {

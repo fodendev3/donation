@@ -12,12 +12,12 @@ const Register = ({ type }) => {
 
   async function submit(event) {
     event.preventDefault()
-    if (type === 'user') {
+    if (type === 'User') {
       const { success, error } = await signupUser(email.current.value, password.current.value)
       if (!success) return toast.error(error)
       toast.success('Signed up successfully!')
       navigate('/user')
-    } else if (type === 'ngo') {
+    } else if (type === 'Ngo') {
       const { success, error } = await signupNgo(email.current.value, password.current.value)
       if (!success) return toast.error(error)
       toast.success('Signed up successfully!')
