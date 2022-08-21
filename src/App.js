@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ContextProvider from "./context/ContextProvider";
 import Loader from "./components/Loader";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Landing = lazy(() => import("./components/Landing"));
 const Navbar = lazy(() => import("./components/User/Navbar"));
@@ -32,6 +34,7 @@ function App() {
             <Route path="/ngo" element={<Comp />} /> */}
         </Routes>
       </ContextProvider>
+      <ToastContainer position="bottom-right" />
     </Suspense>
   );
 }

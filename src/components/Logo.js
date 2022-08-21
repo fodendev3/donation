@@ -85,7 +85,7 @@ Logo.defaultProp = {
 };
 Logo.propTypes = {
   dimension: PropTypes.number.isRequired,
-  loader: PropTypes.bool.isRequired,
+  loader: PropTypes.bool,
 };
 
 export default Logo;
