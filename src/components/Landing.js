@@ -4,6 +4,7 @@ import poster from "../images/landing.webp";
 import Logo from "./Logo";
 import About from '../components/About';
 import Footer from '../components/Footer';
+import MakeDonations from './User/MakeDonations';
 
 
 const Landing = () => {
@@ -26,7 +27,7 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-
+<MakeDonations/>
 
 
             <div className='bg-[url("images/background.webp")] bg-no-repeat bg-center bg-cover -z-10 w-full h-screen' >
