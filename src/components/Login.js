@@ -3,10 +3,10 @@ import login from '../images/Login.png'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { loginNgo, loginUser } from '../firebase'
-import { useDataContext } from '../context/ContextProvider'
+import { useNavigate } from 'react-router-dom'
 
 const Login = ({ type }) => {
-  const { navigate } = useDataContext()
+  const navigate = useNavigate()
   const email = useRef()
   const password = useRef()
 

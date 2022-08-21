@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import logOutIcon from "./confirmation.png";
-import { Link } from "react-router-dom";
-export default function LogOut(props) {
+import { toast } from 'react-toastify'
+import { logout } from "../../firebase";
+
+export default function LogOut() {
   const [showLogout, setLogOut] = useState("");
 
   function hiddenModal() {
     setLogOut("hidden");
   }
+
+  async function handleLogout() {
+    const { success } = await logout()
+    if (!success) return toast.error('Some error occured...')
+    toast.success('Logged out successfully')
+  }
+
   return (
     <>
       <div
@@ -31,12 +40,11 @@ export default function LogOut(props) {
               >
                 Cancel
               </button>
-              <Link
-                to="/"
+              <button onClick={handleLogout}
                 className="tracking-wider rounded-2xl text-xl font-semibold bg-[#28b485]  px-6 py-2 text-white transition-all duration-200 hover:scale-105 hover:-translate-y-1 ngo-logout-confirm"
               >
                 Confirm
-              </Link>
+              </button>
             </div>
           </div>
         </div>

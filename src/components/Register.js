@@ -3,10 +3,10 @@ import login from '../images/Register.webp'
 import { Link } from 'react-router-dom'
 import { signupNgo, signupUser } from '../firebase'
 import { toast } from 'react-toastify'
-import { useDataContext } from '../context/ContextProvider'
+import { useNavigate } from 'react-router-dom'
 
 const Register = ({ type }) => {
-  const { navigate } = useDataContext()
+  const navigate = useNavigate()
   const email = useRef()
   const password = useRef()
 
