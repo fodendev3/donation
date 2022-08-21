@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore, getDoc, doc, updateDoc, getDocs, collection } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { generatePassword, randomNumber } from './modules/random';
 
 const apiKey = process.env.REACT_APP_FIREBASE_API_KEY
@@ -40,6 +40,14 @@ export async function loginUser(email, password) {
     }
 }
 
+export async function logout() {
+    try {
+        await signOut(auth)
+        localStorage.removeItem('auth-type')
+        return { success: true }
+    } catch { return { success: false } }
+}
+
 export async function getUserData(uid) {
     try {
         const info = await getDoc(doc(db, `/users/${uid}`))
@@ -47,11 +55,17 @@ export async function getUserData(uid) {
     } catch { return { success: false } }
 }
 
-export async function initiateDonation(uid, items) {
+export async function setUserData(uid, name, mobile, pincode, address) {
+    try {
+
+    } catch { return { success: false } }
+}
+
+export async function initiateDonation(uid, description) {
     try {
         const ref = doc(db, `/users/${uid}`)
         const info = await getDoc(ref)
-        const donation = { id: randomNumber(6), items, status: 'pending' }
+        const donation = { id: randomNumber(6), description, status: 'pending', uid, date: Date.now() }
         let donations;
         if (info.exists()) {
             donations = info.data().donations || []
@@ -146,11 +160,17 @@ export async function getNgoData(uid) {
     } catch { return { success: false } }
 }
 
+export async function setNgoData(uid) {
+    try {
+
+    } catch { return { success: false } }
+}
+
 export async function setEvent(uid, title, description, image, url) {
     try {
         const ref = doc(db, `/ngos/${uid}`)
         const info = await getDoc(ref)
-        const event = { title, description, image, url }
+        const event = { title, description, image, url, date: Date.now() }
         let events;
         if (info.exists()) {
             events = info.data().events || []
