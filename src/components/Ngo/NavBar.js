@@ -11,7 +11,7 @@ const NavBar = () => {
         <div className="sticky flex top-0 left-0  justify-between items-center w-screen py-6 px-8  sm:py-2 shadow-md">
           <div>
             <Link to="/ngo" className="flex items-center gap-4">
-              <Logo dimension={2} loader="false" />
+              <Logo dimension={2} loader={false} />
               <h1
                 className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-[#2dc1e4] to-[#e8ecc7] hidden lg:block"
                 style={{
@@ -31,12 +31,12 @@ const NavBar = () => {
               Home
             </Link>
             <Link
-              to="/ngo/dash"
+              to="/ngo/dashboard"
               className=" hidden sm:block text-xl tracking-widest font-semibold uppercase relative  after:absolute after:content-[''] after:w-full  after:-bottom-[.2rem]  after:-left-full after:h-[.2rem] after:hidden  after:bg-gradient-to-r after:from-[#2dc1e4] after:to-[#e8ecc7] hover:after:left-0 after:transition-all after:ease-in-out after:duration-500 hover:after:block hover:translate-x-1 hover:ease-in-out hover:duration-200 "
             >
               Dashboard
             </Link>
-            <a href="/" className=" relative ">
+            <Link to="/ngo/dashboard" className=" relative ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-8 h-8 animate-[ring_1s_ease-out_infinite] "
@@ -57,7 +57,7 @@ const NavBar = () => {
               >
                 5
               </span>
-            </a>
+            </Link>
             <Link exact to="/ngo/profile">
               <img
                 src={profileImage}
@@ -147,7 +147,7 @@ const NavBar = () => {
             Home
           </Link>
           <Link
-            to="/ngo/dash"
+            to="/ngo/dashboard"
             className="text-xl border-b-2 py-4 font-semibold"
             onClick={() => {
               document

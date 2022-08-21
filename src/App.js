@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import ContextProvider from "./context/ContextProvider";
 import Loader from "./components/Loader";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const Landing = lazy(() => import("./components/Landing"));
 const Navbar = lazy(() => import("./components/User/Navbar"));
@@ -12,8 +12,11 @@ const Login = lazy(() => import("./components/Login"));
 const NavBar = lazy(() => import("./components/Ngo/NavBar"));
 const Dashboard = lazy(() => import("./components/Ngo/Dashboard"));
 const Profile = lazy(() => import("./components/Ngo/Profile"));
-const About = lazy(() => import("./components/About"))
-
+const About = lazy(() => import("./components/About"));
+const Posts = lazy(() => import("./components/Ngo/Posts"));
+const DashBoardMoreDetails = lazy(() =>
+  import("./components/Ngo/DashBoardMoreDetails")
+);
 function App() {
   const location = useLocation();
 
@@ -25,12 +28,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
-          <Route path="/user/signup" element={<Register type='User' />} />
-          <Route path="/user/login" element={<Login type='User' />} />
-          <Route path="/ngo/signup" element={<Register type='Ngo' />} />
-          <Route path="/ngo/login" element={<Login type='Ngo' />} />
+          <Route path="/user/signup" element={<Register type="User" />} />
+          <Route path="/user/login" element={<Login type="User" />} />
+          <Route path="/ngo/signup" element={<Register type="Ngo" />} />
+          <Route path="/ngo/login" element={<Login type="Ngo" />} />
           <Route path="/ngo/dashboard" element={<Dashboard />} />
           <Route path="/ngo/profile" element={<Profile />} />
+          <Route path="/ngo" element={<Posts />} />
+          <Route path="/ngo/dashmore" element={<DashBoardMoreDetails />} />
 
           {/* <Route path="/user" element={<Comp />} />
             <Route path="/ngo" element={<Comp />} /> */}
