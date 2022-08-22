@@ -83,7 +83,13 @@ export default function UserProfile() {
                     Update you profile and personnel details
                   </h1>
                 </div>
-                <div className="hidden sm:flex absolute top-full right-0 mt-4  gap-4 items-center">
+              </div>
+              <form
+                className={` gap-10 relative mt-36 w-full flex-col ${
+                  page === "profile" ? "flex" : "hidden"
+                }`}
+              >
+                <div className="hidden sm:flex absolute -top-32 right-0 mt-4  gap-4 items-center">
                   <button
                     className={`bg-gray-200 text-black font-semibold px-4 py-2 rounded-xl ${
                       edit ? "hidden" : ""
@@ -105,12 +111,6 @@ export default function UserProfile() {
                     {edit ? "Update" : "Save Changes"}
                   </button>
                 </div>
-              </div>
-              <div
-                className={` gap-10 mt-36 w-full flex-col ${
-                  page === "profile" ? "flex" : "hidden"
-                }`}
-              >
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
                   <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
                     Name
@@ -239,7 +239,7 @@ export default function UserProfile() {
                     ></input>
                   </div>
                 </div>
-              </div>
+              </form>
               <form
                 className={` gap-10 mt-36 w-full flex-col ${
                   page === "password" ? "flex" : "hidden"

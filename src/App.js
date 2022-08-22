@@ -48,7 +48,8 @@ function App() {
           <Route path="/user" element={<UserHome />} />
 
           <Route path="/ngo/profile" element={<Profile type="NotUser" />} />
-          <Route path="/user/trackdonation" element={<TrackDonation />} />
+          <Route path="/user/donations" element={<TrackDonation />} />
+          <Route path="/user/donate" element={<MakeDonations />} />
           <Route path="/partners" element={<Allngo />} />
 
           {/* <Route path="/user" element={<Comp />} />
