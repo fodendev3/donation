@@ -22,8 +22,6 @@ import userLogo from "./images.jpg";
 const DashBoardMoreDetails = () => {
   const [status, setStatus] = useState("accepted");
 
-  document.querySelector("body").style.overflowX = "hidden";
-
   return (
     <div
       className="mt-28 sm:mt-10 mx-2 sm:mx-10 px-10 py-8 sm:px-10 flex flex-col gap-8 rounded-xl  shadow-2xl shadow-slate-400

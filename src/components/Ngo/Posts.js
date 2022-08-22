@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import ngoLogo from "./images.jpg";
 import eventImage from "./download.jpg";
 export default function Posts() {
-  document.querySelector("body").style.overflowX = "hidden";
-
   const [post, setPost] = useState("flex");
   //   const [message, setMessage] = useState("block");
   //   setTimeout(() => {
@@ -111,8 +109,9 @@ export default function Posts() {
             </div>
           </div>
           <div
-            className={`w-full sm:w-2/3 shadow-[-4px_0px_24px_rgba(0,0,0,.4)]  shadow-slate-300 rounded-3xl px-8 py-8 pt-16  flex-col gap-8 text-gray-600 relative ${post === "flex" ? "hidden" : "flex"
-              }`}
+            className={`w-full sm:w-2/3 shadow-[-4px_0px_24px_rgba(0,0,0,.4)]  shadow-slate-300 rounded-3xl px-8 py-8 pt-16  flex-col gap-8 text-gray-600 relative ${
+              post === "flex" ? "hidden" : "flex"
+            }`}
           >
             <div
               className="absolute top-7 right-10"

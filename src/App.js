@@ -21,6 +21,12 @@ const Posts = lazy(() => import("./components/Ngo/Posts"));
 const DashBoardMoreDetails = lazy(() =>
   import("./components/Ngo/DashBoardMoreDetails")
 );
+const UserProfile = lazy(() => import("./components/User/UserProfile"));
+const UserHome = lazy(() => import("./components/User/UserHome"));
+const Allngo = lazy(() => import("./components/Ngo/Allngo"));
+const TrackDonation = lazy(() => import("./components/User/TrackDonation"));
+const MakeDonations = lazy(() => import("./components/User/MakeDonations"));
+
 function App() {
   const location = useLocation();
 
@@ -43,6 +49,10 @@ function App() {
           <Route path="/ngo/dashmore" element={<DashBoardMoreDetails />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/user" element={<UserHome />} />
+
+          <Route path="/ngo/profile" element={<Profile type="NotUser" />} />
+          <Route path="/user/trackdonation" element={<TrackDonation />} />
+          <Route path="/partners" element={<Allngo />} />
 
           {/* <Route path="/user" element={<Comp />} />
             <Route path="/ngo" element={<Comp />} /> */}

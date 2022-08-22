@@ -3,8 +3,6 @@ import ngoImage from "./images.jpg";
 import LogOut from "./LogOut";
 
 export default function Profile(props) {
-  document.querySelector("body").style.overflowX = "hidden";
-
   const [edit, setEdit] = useState(true);
   const [page, setpage] = useState("profile");
   const [password, setPassword] = useState("");
