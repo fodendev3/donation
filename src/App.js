@@ -56,7 +56,7 @@ function App() {
             <Route path="/ngo" element={<Comp />} /> */}
         </Routes>
       </ContextProvider>
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="bottom-right" pauseOnFocusLoss={false} pauseOnHover={false} autoClose={2000} />
     </Suspense>
   );
 }
