@@ -13,7 +13,7 @@ const NavBar = () => {
             <Link to="/ngo" className="flex items-center gap-4">
               <Logo dimension={2} loader={false} />
               <h1
-                className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-gradient1a to-gradient1b hidden lg:block"
+                className="text-4xl font-mono italic text-transparent bg-clip-text bg-gradient-to-t from-colorPrimary to-colorSecondary hidden lg:block"
                 style={{
                   wordSpacing: ".1rem",
                   letterSpacing: ".1rem",
@@ -163,7 +163,7 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        className="ngo-menu-back hidden absolute top-26 right-0 bg-gradient-to-r from-[#2dc1e4] to-[#e8ecc7] -z-1   sm:hidden"
+        className="ngo-menu-back hidden absolute top-26 right-0 bg-gradient-to-r from-colorPrimary to-colorSecondary -z-1   sm:hidden"
         style={{
           transition: "all 2s",
         }}

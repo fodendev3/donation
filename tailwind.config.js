@@ -12,12 +12,14 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: {
-        'gradient1a': '#E0C4FD',
-        'gradient1b': '#8FC6FD',
+        gradient1a: "#E0C4FD",
+        gradient1b: "#8FC6FD",
+        colorPrimary: "#2dc1e4",
+        colorSecondary: "#e8ecc7",
       },
       width: {
-        '4.8': '48%',
-        '9.8': '98%',
+        4.8: "48%",
+        9.8: "98%",
       },
     },
   },

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ngoImage from "./images.jpg";
 import LogOut from "./LogOut";
 
-export default function Profile() {
+export default function Profile(props) {
   document.querySelector("body").style.overflowX = "hidden";
 
   const [edit, setEdit] = useState(true);
@@ -29,7 +29,13 @@ export default function Profile() {
       </div>
       <div className="mb-10">
         <div className="max-w-7xl  2xl:mx-auto mx-12 mt-8 ">
-          <h1 className="text-3xl font-mono">Settings</h1>
+          <h1
+            className={`text-3xl font-mono ${
+              props.type === "NotUser" ? "hidden" : ""
+            }`}
+          >
+            Settings
+          </h1>
           <div className="flex flex-col sm:flex-row gap-12 sm:gap-28 mt-8">
             <div className="flex flex-row sm:flex-col  gap-5 tracking-wider">
               <div
@@ -43,7 +49,9 @@ export default function Profile() {
                 Profile
               </div>
               <div
-                className={`hidden sm:block text-xl cursor-pointer ${
+                className={`  ${
+                  props.type === "NotUser" ? "hidden" : "hidden xsm:block"
+                } ock text-xl cursor-pointer ${
                   page === "password"
                     ? "font-bold tracking-widest text-2xl"
                     : ""
@@ -56,6 +64,8 @@ export default function Profile() {
               </div>
               <div
                 className={`text-xl cursor-pointer ${
+                  props.type === "NotUser" ? "hidden" : ""
+                } ${
                   page === "logout" ? "font-bold tracking-widest text-2xl" : ""
                 }`}
                 onClick={() => {
@@ -95,7 +105,9 @@ export default function Profile() {
                     Cancel
                   </button>
                   <button
-                    className="bg-black text-white px-4 py-2 rounded-xl"
+                    className={`bg-black text-white px-4 py-2 rounded-xl ${
+                      props.type === "NotUser" ? "hidden" : ""
+                    }`}
                     onClick={() => {
                       edit ? setEdit(false) : setEdit(true);
                     }}

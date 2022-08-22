@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 
+body {
+  overflow-x: hidden;
+}
 .triangle-left-top-big {
   clip-path: polygon(
     75% 0,
