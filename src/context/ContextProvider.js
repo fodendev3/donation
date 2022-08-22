@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, createContext, useEffect } from "react";
+import React, { useContext, createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getNgoData, getUserData } from "../firebase";
 import useAuth from "../hooks/useAuth";
 
 const Context = createContext()
@@ -11,8 +12,32 @@ const ContextProvider = props => {
     const location = useLocation()
     const { user, ngo } = useAuth()
     const notLogged = ['/', '/user/signup', '/user/login', '/ngo/signup', '/ngo/login', '/ngo/all', '/ngo/id/:uid']
-    const userLogged = ['/user', 'user/profile', '/ngo/id/:uid', '/user/donate', '/user/donations', '/ngo/all']
+    const userLogged = ['/user', '/user/profile', '/ngo/id/:uid', '/user/donate', '/user/donations', '/ngo/all']
     const ngoLogged = ['/ngo', '/ngo/profile', '/ngo/id/:uid', '/ngo/all', '/ngo/dashboard', '/ngo/dashmore']
+    const [userData, setUserData] = useState({})
+    const [ngoData, setNgoData] = useState({})
+    const [userDataUpdated, setUserDataUpdated] = useState(true)
+    const [ngoDataUpdated, setNgoDataUpdated] = useState(true)
+
+    useEffect(() => {
+        if (!user || !userDataUpdated) return
+        getUserData(ngo).then(({ success, data }) => {
+            if (success) {
+                setUserData(data)
+                setUserDataUpdated(false)
+            }
+        })
+    }, [user])
+
+    useEffect(() => {
+        if (!ngo || !ngoDataUpdated) return
+        getNgoData(ngo).then(({ success, data }) => {
+            if (success) {
+                setNgoData(data)
+                setNgoDataUpdated(false)
+            }
+        })
+    }, [ngo])
 
     useEffect(() => {
         const path = location.pathname
@@ -21,7 +46,7 @@ const ContextProvider = props => {
         else if (user === null && ngo === null) { if (!notLogged.includes(path)) navigate('/') }
     }, [user, ngo, location.pathname])
 
-    return <Context.Provider value={{ user, ngo }}>
+    return <Context.Provider value={{ userData, ngoData, setUserDataUpdated, setNgoDataUpdated }}>
         {props.children}
     </Context.Provider>
 }

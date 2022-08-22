@@ -1,14 +1,39 @@
-import React, { useState, useEffect } from "react";
-import ngoImage from "./images.jpg";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useRef } from "react";
+import { setNgoData } from "../../firebase";
+import useAuth from "../../hooks/useAuth";
 import LogOut from "./LogOut";
+import dummyImage from '../../images/dummy.webp'
+import { toast } from "react-toastify";
+import { useDataContext } from "../../context/ContextProvider";
 
-export default function Profile(props) {
+export default function Profile() {
+  document.querySelector("body").style.overflowX = "hidden";
+
   const [edit, setEdit] = useState(true);
   const [page, setpage] = useState("profile");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatched, setPasswordMatched] = useState(false);
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+  const { ngo, email } = useAuth()
+  const { ngoData: data, setNgoDataUpdated } = useDataContext()
+  const name = useRef()
+  const website = useRef()
+  const image = useRef()
+  const description = useRef()
+  const mobile = useRef()
+  const address = useRef()
+  const pincode = useRef()
+
+  async function submit(event) {
+    event.preventDeafult()
+    const { success } = await setNgoData(ngo, name.current.value, website.current.value, image.current.value, description.current.value, mobile.current.value, address.current.value, pincode.current.value)
+    if (!success) return toast.error('Some error occurred...')
+    setNgoDataUpdated(true)
+    toast.success('Profile updated successfully!')
+  }
+
   useEffect(() => {
     if (
       password === confirmPassword &&
@@ -20,6 +45,7 @@ export default function Profile(props) {
       setPasswordMatched(false);
     }
   }, [password, confirmPassword]);
+
   return (
     <>
       <div className={`${page === "logout" ? "" : "hidden"}`}>
@@ -27,19 +53,12 @@ export default function Profile(props) {
       </div>
       <div className="mb-10">
         <div className="max-w-7xl  2xl:mx-auto mx-12 mt-8 ">
-          <h1
-            className={`text-3xl font-mono ${
-              props.type === "NotUser" ? "hidden" : ""
-            }`}
-          >
-            Settings
-          </h1>
+          <h1 className="text-3xl font-mono">Settings</h1>
           <div className="flex flex-col sm:flex-row gap-12 sm:gap-28 mt-8">
             <div className="flex flex-row sm:flex-col  gap-5 tracking-wider">
               <div
-                className={`text-xl cursor-pointer ${
-                  page === "profile" ? "font-bold tracking-widest text-2xl" : ""
-                }`}
+                className={`text-xl cursor-pointer ${page === "profile" ? "font-bold tracking-widest text-2xl" : ""
+                  }`}
                 onClick={() => {
                   setpage("profile");
                 }}
@@ -47,13 +66,10 @@ export default function Profile(props) {
                 Profile
               </div>
               <div
-                className={`  ${
-                  props.type === "NotUser" ? "hidden" : "hidden xsm:block"
-                } ock text-xl cursor-pointer ${
-                  page === "password"
-                    ? "font-bold tracking-widest text-2xl"
-                    : ""
-                }`}
+                className={`hidden sm:block text-xl cursor-pointer ${page === "password"
+                  ? "font-bold tracking-widest text-2xl"
+                  : ""
+                  }`}
                 onClick={() => {
                   setpage("password");
                 }}
@@ -61,11 +77,8 @@ export default function Profile(props) {
                 Password
               </div>
               <div
-                className={`text-xl cursor-pointer ${
-                  props.type === "NotUser" ? "hidden" : ""
-                } ${
-                  page === "logout" ? "font-bold tracking-widest text-2xl" : ""
-                }`}
+                className={`text-xl cursor-pointer ${page === "logout" ? "font-bold tracking-widest text-2xl" : ""
+                  }`}
                 onClick={() => {
                   setpage("logout");
                 }}
@@ -76,7 +89,7 @@ export default function Profile(props) {
             <div className="w-full ">
               <div className="h-36 rounded-tl-3xl w-full bg-gray-200 relative ">
                 <img
-                  src={ngoImage}
+                  src={data?.image || dummyImage}
                   alt="Ngo Logo"
                   className="absolute rounded-full w-28 h-28 top-[85%] left-8"
                 ></img>
@@ -93,9 +106,8 @@ export default function Profile(props) {
                 </div>
                 <div className="hidden sm:flex absolute top-full right-0 mt-4  gap-4 items-center">
                   <button
-                    className={`bg-gray-200 text-black font-semibold px-4 py-2 rounded-xl ${
-                      edit ? "hidden" : ""
-                    }`}
+                    className={`bg-gray-200 text-black font-semibold px-4 py-2 rounded-xl ${edit ? "hidden" : ""
+                      }`}
                     onClick={() => {
                       setEdit(true);
                     }}
@@ -103,9 +115,7 @@ export default function Profile(props) {
                     Cancel
                   </button>
                   <button
-                    className={`bg-black text-white px-4 py-2 rounded-xl ${
-                      props.type === "NotUser" ? "hidden" : ""
-                    }`}
+                    className="bg-black text-white px-4 py-2 rounded-xl"
                     onClick={() => {
                       edit ? setEdit(false) : setEdit(true);
                     }}
@@ -114,10 +124,9 @@ export default function Profile(props) {
                   </button>
                 </div>
               </div>
-              <div
-                className={` gap-10 mt-36 w-full flex-col ${
-                  page === "profile" ? "flex" : "hidden"
-                }`}
+              <form onSubmit={submit}
+                className={`gap-10 mt-36 w-full flex-col ${page === "profile" ? "flex" : "hidden"
+                  }`}
               >
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
                   <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
@@ -126,11 +135,12 @@ export default function Profile(props) {
                   <div className="w-full">
                     <input
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      ref={name}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="text"
-                      value="Donate India"
+                      required
+                      defaultValue={data?.name}
                     ></input>
                   </div>
                 </div>
@@ -141,11 +151,11 @@ export default function Profile(props) {
                   <div className="w-full">
                     <input
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
-                      type="text"
-                      value="donationweb.vercel.app"
+                      ref={website}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
+                      type="url"
+                      defaultValue={data?.website}
                     ></input>
                   </div>
                 </div>
@@ -159,11 +169,12 @@ export default function Profile(props) {
                   <div className="w-full">
                     <input
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      ref={image}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="url"
-                      value="webpages.webp"
+                      required
+                      defaultValue={data?.image}
                     ></input>
                   </div>
                 </div>
@@ -178,11 +189,12 @@ export default function Profile(props) {
                     <textarea
                       rows={3}
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      ref={description}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="text"
-                      value="We are contributing towards the welfare of the women and child by providing them proper knowledge and skills"
+                      required
+                      defaultValue={data?.description}
                     ></textarea>
                   </div>
                 </div>
@@ -193,12 +205,11 @@ export default function Profile(props) {
                   </div>
                   <div className="w-full">
                     <input
-                      disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      disabled
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="email"
-                      value="care@donateindia.com"
+                      value={email}
                     ></input>
                   </div>
                 </div>
@@ -209,42 +220,12 @@ export default function Profile(props) {
                   <div className="w-full">
                     <input
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      ref={mobile}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="text"
-                      value="8612635623"
-                    ></input>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
-                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
-                    <div>Alternate Contact No</div>
-                  </div>
-                  <div className="w-full">
-                    <input
-                      disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
-                      type="tel"
-                      value="6545812721"
-                    ></input>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 w-full ">
-                  <div className="text-xl tracking-wide font-medium w-full sm:w-1/2">
-                    <div>Locality</div>
-                  </div>
-                  <div className="w-full">
-                    <input
-                      disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
-                      type="tel"
-                      value="Janakpuri"
+                      required
+                      defaultValue={data?.mobile}
                     ></input>
                   </div>
                 </div>
@@ -256,11 +237,12 @@ export default function Profile(props) {
                     <textarea
                       rows={2}
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      ref={address}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="text"
-                      value="C-4 , Street no.10,Block C , Janakpuri , New Delhi"
+                      required
+                      defaultValue={data?.address}
                     ></textarea>
                   </div>
                 </div>
@@ -271,19 +253,19 @@ export default function Profile(props) {
                   <div className="w-full">
                     <input
                       disabled={edit}
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg`}
+                      ref={pincode}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg`}
                       type="text"
-                      value="110058"
+                      required
+                      defaultValue={data?.pincode}
                     ></input>
                   </div>
                 </div>
-              </div>
+              </form>
               <form
-                className={` gap-10 mt-36 w-full flex-col ${
-                  page === "password" ? "flex" : "hidden"
-                }`}
+                className={` gap-10 mt-36 w-full flex-col ${page === "password" ? "flex" : "hidden"
+                  }`}
               >
                 <div className="flex gap-12 w-full items-center">
                   <div className="text-xl tracking-wide font-medium w-1/2">
@@ -292,9 +274,8 @@ export default function Profile(props) {
                   <div className="w-full">
                     <input
                       required
-                      className={`w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg password`}
+                      className={`w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg password`}
                       type="text"
                       placeholder="New password"
                       onKeyDown={() => {
@@ -311,9 +292,8 @@ export default function Profile(props) {
                     <input
                       type={confirmPasswordType}
                       required
-                      className={`password-show w-full px-6 py-2 text-lg ${
-                        edit ? "text-gray-600" : ""
-                      }  bg-gray-100 rounded-lg confirmPassword`}
+                      className={`password-show w-full px-6 py-2 text-lg ${edit ? "text-gray-600" : ""
+                        }  bg-gray-100 rounded-lg confirmPassword`}
                       placeholder="Confirm Password"
                       onKeyDown={() => {
                         setConfirmPassword(
@@ -333,9 +313,8 @@ export default function Profile(props) {
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className={`h-5 w-5 ${
-                          confirmPasswordType === "text" ? "hidden" : ""
-                        }`}
+                        className={`h-5 w-5 ${confirmPasswordType === "text" ? "hidden" : ""
+                          }`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -348,9 +327,8 @@ export default function Profile(props) {
                       </svg>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className={`h-5 w-5 ${
-                          confirmPasswordType === "password" ? "hidden" : ""
-                        }`}
+                        className={`h-5 w-5 ${confirmPasswordType === "password" ? "hidden" : ""
+                          }`}
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -368,18 +346,16 @@ export default function Profile(props) {
                 <div className="flex justify-between mb-12 ">
                   <div className="text-left">
                     <h1
-                      className={`text-xl ${
-                        passwordMatched ? "text-green-400" : "text-red-400"
-                      } ${password || confirmPassword ? "block" : "hidden"}`}
+                      className={`text-xl ${passwordMatched ? "text-green-400" : "text-red-400"
+                        } ${password || confirmPassword ? "block" : "hidden"}`}
                     >
                       Password{" "}
                       {`${passwordMatched ? "Matched" : "not matched"}`}
                     </h1>
                   </div>
                   <button
-                    className={`bg-black text-white px-4 py-2 rounded-xl ${
-                      passwordMatched ? "" : "hidden"
-                    }`}
+                    className={`bg-black text-white px-4 py-2 rounded-xl ${passwordMatched ? "" : "hidden"
+                      }`}
                   >
                     Save Changes
                   </button>

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, getDoc, doc, updateDoc, getDocs, collection } from "firebase/firestore";
+import { getFirestore, getDoc, doc, updateDoc, getDocs, collection, setDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { generatePassword, randomNumber } from './modules/random';
 
@@ -160,9 +160,13 @@ export async function getNgoData(uid) {
     } catch { return { success: false } }
 }
 
-export async function setNgoData(uid) {
+export async function setNgoData(uid, name, website, image, description, mobile, address, pincode) {
     try {
-
+        const ref = doc(db, `/users/${uid}`)
+        const info = await getDoc(ref)
+        if (info.exists()) await updateDoc(ref, { name, website, image, description, mobile, address, pincode })
+        else await setDoc(ref, { name, website, image, description, mobile, address, pincode })
+        return { success: true }
     } catch { return { success: false } }
 }
 
