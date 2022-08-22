@@ -5,9 +5,6 @@ import ContextProvider from "./context/ContextProvider";
 import Loader from "./components/Loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MakeDonations from "./components/User/MakeDonations";
-import UserProfile from "./components/User/UserProfile";
-import UserHome from "./components/User/UserHome";
 
 const Landing = lazy(() => import("./components/Landing"));
 const Navbar = lazy(() => import("./components/User/Navbar"));
